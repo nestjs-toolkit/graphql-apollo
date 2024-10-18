@@ -1,5 +1,4 @@
 import { ResolveField, Resolver } from '@nestjs/graphql';
-import { currencyFormat } from '@nestjs-toolkit/base/utils';
 
 @Resolver('CustomNumber')
 export class CustomNumberResolver {
@@ -25,16 +24,35 @@ export class CustomNumberResolver {
 
   @ResolveField()
   format(number: number, { digits, after, before }): string {
-    return `${after || ''}${currencyFormat(number, digits)}${before || ''}`;
+    return this.currencyFormat(number, digits, after, before);
   }
 
   @ResolveField()
-  currency(number: number, { locale, digits, after, before }): string {
-    const value = new Intl.NumberFormat(locale || 'pt-BR', {
-      minimumFractionDigits: digits || 2,
-      maximumFractionDigits: digits || 2,
-    }).format(number);
+  currency(number: number, { digits, after, before }): string {
+    return this.currencyFormat(number, digits, after, before);
+  }
 
-    return `${after || ''}${value}${before || ''}`;
+  private currencyFormat(
+    number: number,
+    digits?: number,
+    after?: string,
+    before?: string,
+  ): string {
+    const negative = number < 0;
+    const absoluteValue = Math.abs(number).toFixed(digits || 2);
+    const [integerPart, decimalPart] = absoluteValue.split('.');
+
+    const formattedIntegerPart = integerPart.replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      '.',
+    );
+
+    const formattedNumber = `${formattedIntegerPart},${decimalPart}`;
+
+    if (negative) {
+      return `-${after}${formattedNumber}${before}`;
+    }
+
+    return `${after}${formattedNumber}${before}`;
   }
 }

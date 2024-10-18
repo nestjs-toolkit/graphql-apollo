@@ -31,7 +31,7 @@ type CustomDate {
 
     """
     If you know the format of an input string, you can use that to parse a date.
-    Read more: [momentjs format date](https://momentjs.com/docs/#/parsing/string-format)
+    Read more: [MomentJS format date](https://momentjs.com/docs/#/parsing/string-format)
     """
     transform(format: String!): String
 }
@@ -47,10 +47,8 @@ type CustomNumber {
 
     format(before: String, after: String, digits: Int = 2): String
 
-    currency(
-        locale: String = "pt-BR"
-        before: String
-        after: String
-        digits: Int = 2
-    ): String
+    """
+    Some methods to format a number as a currency
+    """
+    currency(before: String, after: String, digits: Int = 2): String
 }
