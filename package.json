@@ -1,7 +1,7 @@
 {
-  "name": "@nestjs-toolkit/graphql-mercurius",
+  "name": "@nestjs-toolkit/graphql-apollo",
   "version": "2.0.2",
-  "description": "NestJS Toolkit - GraphQL Mercurius",
+  "description": "NestJS Toolkit - GraphQL Apollo",
   "author": "Valmir Barbosa",
   "license": "MIT",
   "scripts": {
@@ -50,5 +50,5 @@
     "tsconfig-paths": "4.2.0",
     "typescript": "^5.0.0"
   },
-  "packageManager": "yarn@3.5.1"
+  "packageManager": "yarn@4.5.1"
 }
