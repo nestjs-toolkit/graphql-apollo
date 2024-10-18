@@ -1,12 +1,12 @@
 ## Descrição
 
 Ferramentas para facilitar o desenvolvimento de aplicações com NestJS,
-utilizando [Mercurius GraphQL](https://mercurius.dev).
+utilizando [Apollo GraphQL](https://www.apollographql.com/docs/apollo-server).
 
 ## Instalação
 
 ```bash
-$ yarn add @nestjs-toolkit/graphql-mercurius
+$ yarn add @nestjs-toolkit/graphql-apollo
 ```
 
 Setup
@@ -14,14 +14,13 @@ Setup
 ```typescript
 import {Module} from '@nestjs/common';
 import {GraphQLModule} from '@nestjs/graphql';
-import {MercuriusDriver, MercuriusDriverConfig} from '@nestjs/mercurius';
-import {CustomDateResolver, CustomNumberResolver} from '@nestjs-toolkit/graphql-mercurius/resolvers';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import {CustomDateResolver, CustomNumberResolver} from '@nestjs-toolkit/graphql-apollo/resolvers';
 
 @Module({
     imports: [
-        GraphQLModule.forRoot<MercuriusDriverConfig>({
-            driver: MercuriusDriver,
-            graphiql: true,
+        GraphQLModule.forRoot<ApolloDriverConfig>({
+            driver: ApolloDriver,
         }),
     ],
     providers: [CustomDateResolver, CustomNumberResolver],
