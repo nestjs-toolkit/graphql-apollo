@@ -47,12 +47,14 @@ export class CustomNumberResolver {
       '.',
     );
 
-    const formattedNumber = `${formattedIntegerPart},${decimalPart}`;
+    const formattedNumber = `${
+      after || ''
+    }${formattedIntegerPart},${decimalPart}${before || ''}`;
 
     if (negative) {
-      return `-${after}${formattedNumber}${before}`;
+      return `-${formattedNumber}`;
     }
 
-    return `${after}${formattedNumber}${before}`;
+    return formattedNumber;
   }
 }
