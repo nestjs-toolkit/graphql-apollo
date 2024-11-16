@@ -38,23 +38,24 @@ export class CustomNumberResolver {
     after?: string,
     before?: string,
   ): string {
-    const negative = number < 0;
-    const absoluteValue = Math.abs(number).toFixed(digits ?? 2);
+    const isNegative = number < 0;
+    const absoluteValue = Math.abs(number).toFixed(digits);
+
+    // Divide o valor absoluto em parte inteira e decimal
     const [integerPart, decimalPart] = absoluteValue.split('.');
 
+    // Formata a parte inteira com separador de milhares usando vírgulas
     const formattedIntegerPart = integerPart.replace(
       /\B(?=(\d{3})+(?!\d))/g,
       '.',
     );
 
-    const formattedNumber = `${
-      after || ''
-    }${formattedIntegerPart},${decimalPart}${before || ''}`;
+    // Combina a parte inteira e decimal no formato esperado
+    const formattedNumber = decimalPart
+      ? `${before}${formattedIntegerPart},${decimalPart}${after}`
+      : `${before}${formattedIntegerPart}${after}`;
 
-    if (negative) {
-      return `-${formattedNumber}`;
-    }
-
-    return formattedNumber;
+    // Adiciona o sinal de negativo se necessário
+    return isNegative ? `-${formattedNumber}` : formattedNumber;
   }
 }
