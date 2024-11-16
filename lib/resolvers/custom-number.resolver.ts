@@ -39,7 +39,7 @@ export class CustomNumberResolver {
     before?: string,
   ): string {
     const negative = number < 0;
-    const absoluteValue = Math.abs(number).toFixed(digits || 2);
+    const absoluteValue = Math.abs(number).toFixed(digits ?? 2);
     const [integerPart, decimalPart] = absoluteValue.split('.');
 
     const formattedIntegerPart = integerPart.replace(

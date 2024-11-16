@@ -1,6 +1,6 @@
 {
   "name": "@nestjs-toolkit/graphql-apollo",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "NestJS Toolkit - GraphQL Apollo",
   "author": "Valmir Barbosa",
   "license": "MIT",
