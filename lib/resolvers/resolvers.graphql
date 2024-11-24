@@ -45,10 +45,10 @@ type CustomNumber {
 
     fixed(digits: Int!): String
 
-    format(before: String, after: String, digits: Int = 2): String
+    format(before: String, after: String, digits: Int): String
 
     """
     Some methods to format a number as a currency
     """
-    currency(before: String, after: String, digits: Int = 2): String
+    currency(before: String, after: String, digits: Int): String
 }

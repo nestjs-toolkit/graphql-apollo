@@ -38,11 +38,12 @@ export class CustomNumberResolver {
     after?: string,
     before?: string,
   ): string {
+    const _digits = digits ?? 2;
     const isNegative = number < 0;
     const value = Number(Math.abs(number)) || 0;
     const format = Number(value).toLocaleString('pt-BR', {
-      minimumFractionDigits: digits ?? 0,
-      maximumFractionDigits: digits ?? 0,
+      minimumFractionDigits: _digits,
+      maximumFractionDigits: _digits,
     });
 
     const text = `${before || ''}${format}${after || ''}`;
